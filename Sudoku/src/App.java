@@ -93,7 +93,7 @@ public class App {
         var linha = validaIntervaloNumero(0, 8);
         System.out.printf("Informe o número que vai entrar na posição [%s,%s]\n", coluna, linha);
         var value = validaIntervaloNumero(1, 9);
-        if (!quadro.MudarValor(coluna, linha, value)){
+        if (!quadro.mudarValor(coluna, linha, value)){
             System.out.printf("A posição [%s,%s] tem um valor fixo\n", coluna, linha);
         }        
     }
@@ -107,7 +107,7 @@ public class App {
         var coluna = validaIntervaloNumero(0, 8);
         System.out.println("Informe a linha que em que o número será removido");
         var linha = validaIntervaloNumero(0, 8);
-        if (!quadro.LimparValor(coluna, linha)){
+        if (!quadro.limparValor(coluna, linha)){
             System.out.printf("A posição [%s,%s] tem um valor fixo\n", coluna, linha);
         }
     }
@@ -136,7 +136,7 @@ public class App {
         }
 
         System.out.printf("O jogo atualmente se encontra no status %s\n", quadro.getStatus().getLabel());
-        if(quadro.TemErros()){
+        if(quadro.temErros()){
             System.out.println("O jogo contém erros");
         } else {
             System.out.println("O jogo não contém erros");
@@ -167,11 +167,11 @@ public class App {
             return;
         }
 
-        if (quadro.JogoFinalizado()){
+        if (quadro.jogoFinalizado()){
             System.out.println("Parabéns você concluiu o jogo");
             visualizarJogoAtual();
             quadro = null;
-        } else if (quadro.TemErros()) {
+        } else if (quadro.temErros()) {
             System.out.println("Seu jogo contém, erros, verifique seu board e ajuste-o");
         } else {
             System.out.println("Você ainda precisa preenhcer algum espaço");

@@ -29,7 +29,7 @@ public class Quadro {
             .anyMatch(a-> isNull(a.getAtual()))? JogoStatusEnum.INCOMPLETO: JogoStatusEnum.COMPLETO;
     }
 
-    public boolean TemErros(){
+    public boolean temErros(){
         if (getStatus() == JogoStatusEnum.SEM_STATUS)
             return false;
         return areas.stream()
@@ -38,7 +38,7 @@ public class Quadro {
 
     }
 
-    public boolean MudarValor(final int coluna, final int linha, final int valor){
+    public boolean mudarValor(final int coluna, final int linha, final int valor){
         var area = areas.get(coluna).get(linha);
         if (area.isFixo())
             return false; 
@@ -46,7 +46,7 @@ public class Quadro {
         return true;
     }
 
-    public boolean LimparValor(final int coluna, final int linha){
+    public boolean limparValor(final int coluna, final int linha){
         var area = areas.get(coluna).get(linha);
         if (area.isFixo())
             return false; 
@@ -58,8 +58,8 @@ public class Quadro {
         areas.forEach(a -> a.forEach(Area::limparArea));
     }
 
-    public boolean JogoFinalizado(){
-        return !TemErros() && getStatus() == JogoStatusEnum.COMPLETO;
+    public boolean jogoFinalizado(){
+        return !temErros() && getStatus() == JogoStatusEnum.COMPLETO;
     }
 
 

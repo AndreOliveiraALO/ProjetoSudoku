@@ -2,7 +2,7 @@ package util;
 
 public final class QuadroPadrao {
 
-    private QuadroPadrao(){}
+    private QuadroPadrao(){}    
 
     public static final String QUADRO_PADRAO =
         """

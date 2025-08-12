@@ -3,6 +3,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "UIApp",
+            "request": "launch",
+            "mainClass": "UIApp",
+            "projectName": "Sudoku_b7eb7b57"
+        },
+        {
+            "type": "java",
             "name": "App",
             "request": "launch",
             "mainClass": "App",
@@ -89,7 +96,7 @@
                 "6,8;4,true",
                 "7,8;7,false",
                 "8,8;9,false"
-            ]           
+            ]
         },
         {
             "type": "java",

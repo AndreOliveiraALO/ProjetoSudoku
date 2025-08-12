@@ -16,7 +16,6 @@ public class Area {
         return atual;
     }
     public void setAtual(final Integer atual) {
-        //if (fixo) return; testar depois
         if (!fixo)        
             this.atual = atual;
     }

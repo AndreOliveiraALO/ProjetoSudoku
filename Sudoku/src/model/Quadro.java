@@ -34,7 +34,7 @@ public class Quadro {
             return false;
         return areas.stream()
             .flatMap(Collection::stream) 
-            .anyMatch(a -> nonNull(a.getAtual().equals(a.getEsperado())));   
+            .anyMatch(a -> nonNull(a.getAtual()) && !a.getAtual().equals(a.getEsperado()));   
 
     }
 

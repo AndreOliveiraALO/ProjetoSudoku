@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 
 import model.Area;
 import model.Quadro;
+import util.QuadroPadrao;
 
 public class App {
 
@@ -20,10 +21,11 @@ public class App {
     private static int QUADRO_LIMITE = 9;
 
     public static void main(String[] args) throws Exception {
+        
         final var posicoes = Stream.of(args)
             .collect(Collectors.toMap(
                     k -> k.split(";")[0],
-                    v -> v.split(";")[1]));  
+                    v -> v.split(";")[1]));          
                     
         var opcao = -1;
 
@@ -36,23 +38,27 @@ public class App {
             System.out.println("5 - verificar status do jogo");
             System.out.println("6 - limpar jogo");
             System.out.println("7 - finalizar jogo");
-            System.out.println("4 - Sair");
-
-            opcao = scanner.nextInt();
-
-            switch (opcao) {
-                case 1 -> iniciarNovoJogo(posicoes);
-                case 2 -> incluirNumero();
-                case 3 -> removerNumero();
-                case 4 -> visualizarJogoAtual();
-                case 5 -> verificarStatusJogo();
-                case 6 -> limparJogo();
-                case 7 -> finalizarJogo();    
-                case 8 -> System.exit(0);                   
-                default -> System.out.println("Opção inválida, tente novamente.");                    
+            System.out.println("8 - Sair");
+            
+            try{
+                opcao = scanner.nextInt();
+                switch (opcao) {
+                    case 1 -> iniciarNovoJogo(posicoes);
+                    case 2 -> incluirNumero();
+                    case 3 -> removerNumero();
+                    case 4 -> visualizarJogoAtual();
+                    case 5 -> verificarStatusJogo();
+                    case 6 -> limparJogo();
+                    case 7 -> finalizarJogo();    
+                    case 8 -> System.exit(0);                   
+                    default -> System.out.println("Opção inválida, tente novamente.");                    
+                }
+            } catch (Exception e) {
+                System.out.println("Opção Inválida, deve ser informado numeros de 1 a 8! Tente novamente.");
+                scanner.next(); // Limpa o buffer do scanner
+                continue;
             }
-        }
-        
+        }        
     }
 
     private static void iniciarNovoJogo(final Map<String, String> posicoes) {
@@ -62,9 +68,9 @@ public class App {
         }
         List<List<Area>> areas = new ArrayList<>();
         for (int i = 0; i < QUADRO_LIMITE; i++) {
-            List<Area> linha = new ArrayList<>();
+            areas.add(new ArrayList<>());
             for (int j = 0; j < QUADRO_LIMITE; j++) {
-                var posicao = posicoes.get("%s;%s".formatted(i, j));
+                var posicao = posicoes.get("%s,%s".formatted(i, j));
                 var esperada = Integer.parseInt(posicao.split(",")[0]);
                 var fixa = Boolean.parseBoolean(posicao.split(",")[1]);
 
@@ -81,9 +87,9 @@ public class App {
             System.out.println("O jogo ainda nao foi iniciado. Por favor, inicie um novo jogo antes de incluir numeros.");
             return;
         }
-        System.out.println("Informe a coluna que em que o número será inserido");
+        System.out.println("Informe a coluna em qual número será inserido");
         var coluna = validaIntervaloNumero(0, 8);
-        System.out.println("Informe a linha que em que o número será inserido");
+        System.out.println("Informe a linha em qual número será inserido");
         var linha = validaIntervaloNumero(0, 8);
         System.out.printf("Informe o número que vai entrar na posição [%s,%s]\n", coluna, linha);
         var value = validaIntervaloNumero(1, 9);
@@ -120,7 +126,7 @@ public class App {
             }
         }
         System.out.println("Seu jogo se encontra da seguinte forma");
-        System.out.printf((QUADRO_PADRAO) + "\n", args);        
+        System.out.printf((QuadroPadrao.QUADRO_PADRAO) + "\n", args);        
     }
 
     private static void verificarStatusJogo() {
@@ -180,10 +186,4 @@ public class App {
         }
         return current;
     }
-    
-
-
-
-
-
 }

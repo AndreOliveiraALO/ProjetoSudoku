@@ -4,7 +4,7 @@ public final class QuadroPadrao {
 
     private QuadroPadrao(){}
 
-    public static final String QUADRO_PADRAO = 
+    public static final String  = 
         """
             *************************************************************************************
             *|---0---||---1---||---2---|*|---3---||---4---||---5---|*|---6---||---7---||---8---|*

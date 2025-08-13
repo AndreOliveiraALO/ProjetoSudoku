@@ -1,19 +1,14 @@
-import java.awt.Dimension;
-
-import javax.swing.JPanel;
-import javax.swing.JFrame;
-
-import ui.custom.frame.MainFrame;
-import ui.custom.panel.MainPanel;
+import java.util.stream.Stream;
+import ui.custom.screen.MainScreen;
+import static java.util.stream.Collectors.toMap;
 
 public class UIApp {
 
 public static void main(String[] args){
-    var dimension = new Dimension(800, 600);
-    JPanel mainPanel = new MainPanel(dimension);
-    JFrame mainFrame = new MainFrame(dimension, mainPanel);
-    mainFrame.revalidate();
-    mainFrame.repaint();
+    final var gameConfig = Stream.of(args)
+                .collect(toMap(k -> k.split(";")[0], v -> v.split(";")[1]));
+        var mainsScreen = new MainScreen(gameConfig);
+        mainsScreen.buildMainScreen();
 }
 
 }
